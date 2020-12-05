@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="text-center">
+        <h1 class="text-dark">Welcome to Zyonel's blog</h1>
+        <h4 class="text-danger"><i>News on Tech and Software Development</i></h4>
+    </div>
+
+    <div class="container">
+        <button class="btn-lg btn-danger ml-5 border-0"><a class="text-white" href="/articles/add">Add
+                Articles</a></button>
+    </div>
+    <div class="text-secondary my-4 ml-5">
+        <h3><b>Latest Articles</b></h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {{#each articles}}
+                <div class="card mb-4 bg-light text-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{this.author}}</h6>
+                        <p class="card-text"> {{this.snippet}}</p>
+                        <p class="card-text"> {{this.createdAt}}</p>
+                        <button class="btn btn-info"><a href="/articles/{{this.slug}}" class="text-white">Read
+                                More</a></button>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <div class="col-md-4 text-white">
+                <div class="bg-danger p-1 pl-3">
+                    <h3><b>Trending Articles</b></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{>footer}}

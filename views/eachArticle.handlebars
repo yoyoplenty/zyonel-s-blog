@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="text-center">
+        <h1 class="text-dark">Welcome to Zyonel's blog</h1>
+        <h4 class="text-danger"><i>News on Tech and Software Development</i></h4>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 bg-light">
+                <h1>{{articles.title}}</h1>
+                <p>{{articles.createdAt}}</p>
+                <button class="btn btn-info"><a href="/" class="text-white d-inline">All articles</a></button>
+                <button class="btn btn-primary"><a class="text-white" href="edit/{{articles.slug}}">Edit
+                        Article</a></button>
+                <div class="mt-3">
+                    <img src="/uploads/{{articles.img}}" class="img-fluid">
+                </div>
+                <h5 class="pt-3">{{articles.description}}</h5>
+            </div>
+            <div class="col-md-4 text-white">
+                <div class="bg-danger p-1 pl-3">
+                    <h3><b>Must Read</b></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{{>footer}}
