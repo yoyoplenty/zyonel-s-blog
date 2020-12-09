@@ -30,7 +30,8 @@ const Articles = new mongoose.Schema({
     },
     img: {
         type: String,
-        default: "zyonel.jpg"
+        default: "zyonel.jpg",
+        required: false
     },
     slug: {
         type: String,
