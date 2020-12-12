@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 const passport = require('passport');
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
-
+//Global variables here as well
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');

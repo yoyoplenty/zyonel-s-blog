@@ -4,6 +4,9 @@ const router = express.Router();
 var Articles = require('../Models/Articles')
 const multer = require('multer');
 const path = require('path')
+const bcrypt = require('bcryptjs')
+const passport = require('passport');
+const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
 
 app.use(express.urlencoded({ extended: false }))
 
@@ -29,12 +32,15 @@ router.get('/add', (req, res) => {
     res.render('Add')
 })
 
-router.get('/edit/:slug', async (req, res) => {
+router.get('/edit/:slug', ensureAuthenticated, async (req, res) => {
     await Articles.findOne({ slug: req.params.slug }, (err, articles) => {
         if (err) {
             return err
         } else {
-            res.render('editArticle', { articles: articles })
+            res.render('editArticle', {
+                articles: articles,
+                Title: articles.title
+            })
         }
     })
 })
@@ -48,7 +54,6 @@ router.put('/:id', upload.single('file'), async (req, res) => {
     articles.img = req.file.filename
     try {
         articles = await articles.save()
-        console.log(req.body)
         res.redirect('/articles/' + articles.slug)
     }
     catch (err) {
@@ -61,7 +66,10 @@ router.get('/:slug', async (req, res) => {
         if (err) {
             return err
         } else {
-            res.render('eachArticle', { articles: articles })
+            res.render('eachArticle', {
+                articles: articles,
+                Title: articles.title
+            })
         }
     })
 })
@@ -83,7 +91,7 @@ router.post('/', upload.single('file'), async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', ensureAuthenticated, async (req, res) => {
     await Article.findByIdAndDelete(req.params.id)
     res.redirect('/')
 })

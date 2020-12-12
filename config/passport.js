@@ -1,6 +1,5 @@
 var passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 
 //load admin model
@@ -8,9 +7,7 @@ const Admin = require('../Models/Admin');
 
 module.exports = function (passport) {
     passport.use(
-        new LocalStrategy({
-            usernameField: 'email'
-        }, (email, password, done) => {
+        new LocalStrategy({usernameField: 'email'}, (email, password, done) => {
             //match Admin
             Admin.findOne({ email: email })
                 .then(admin => {

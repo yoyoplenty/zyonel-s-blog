@@ -33,6 +33,10 @@ const Articles = new mongoose.Schema({
         default: "zyonel.jpg",
         required: false
     },
+    views: {
+        type: Number,
+        default: 0
+    },
     slug: {
         type: String,
         slug: 'title',
