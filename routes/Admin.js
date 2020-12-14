@@ -21,7 +21,7 @@ router.get('/register', forwardAuthenticated, function (req, res) {
     });
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', forwardAuthenticated, async (req, res) => {
     const { name, email, password, password2 } = req.body
     let errors = [];
     //check fields

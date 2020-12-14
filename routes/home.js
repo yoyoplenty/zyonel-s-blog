@@ -8,10 +8,16 @@ router.get('/', (req, res) => {
         if (err) {
             return err
         } else {
+            //implementing the highest no of views to display on view
+            var viewart = articles.slice(0);
+            viewart.sort(function (a, b) {
+                return b.views - a.views
+            });
             res.render('home', {
                 Title: "Home Page",
                 style: 'main.css',
-                articles: articles
+                articles: articles,
+                views: viewart
             })
         }
     }).sort({ createdAt: 'desc' })

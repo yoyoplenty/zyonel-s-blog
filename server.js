@@ -27,6 +27,9 @@ var hbs = exphbs.create({
         Date: function (tolocal) {
             return tolocal.toLocaleString()
         },
+        Sort: function (view) {
+            return view.sort()
+        }
     },
     handlebars: allowInsecurePrototypeAccess(Handlebars)
 });

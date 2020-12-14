@@ -65,7 +65,14 @@ router.get('/:slug', async (req, res) => {
     await Articles.findOne({ slug: req.params.slug }, (err, articles) => {
         if (err) {
             return err
-        } else {
+        } if (articles) {
+
+            // increase the views by one
+            articles.views++;
+            console.log("views =", articles.views)
+            // save the new value
+            articles.save();
+            // render the page
             res.render('eachArticle', {
                 articles: articles,
                 Title: articles.title
